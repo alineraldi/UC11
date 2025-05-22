@@ -32,6 +32,18 @@ public class ProdutosDAO {
         return DriverManager.getConnection(url, usuario, senha);
     }
     
+    public void venderProduto (int id) {
+        String sql = "UPDATE produtos SET status = ? WHERE id = ?";
+        try (Connection conn = conectar();
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, "Vendido");
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao marcar produto como vendido.");
+        }
+    }
+  
     public void cadastrarProduto (ProdutosDTO produto) throws SQLException{
         String sql = "INSERT INTO produtos (nome, valor, status) VALUES (?, ?, ?)";
         try (Connection conn = conectar();
