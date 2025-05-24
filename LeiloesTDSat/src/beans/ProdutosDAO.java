@@ -1,3 +1,5 @@
+package beans;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -55,6 +57,35 @@ public class ProdutosDAO {
         }
     }
     
+    public List<ProdutosDTO> listarProdutosVendidos(){
+        String sql = "SELECT * FROM produtos WHERE status = ?";
+        
+        try (Connection conn = conectar();
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, "Vendido");
+        ResultSet rs = stmt.executeQuery();
+        
+        List<ProdutosDTO> listaProdutosVendidos = new ArrayList<>();
+        
+        while (rs.next()) {
+            ProdutosDTO produtos = new ProdutosDTO();
+            produtos.setId(rs.getInt("id"));
+            produtos.setNome(rs.getString("nome"));
+            produtos.setValor(rs.getInt("valor"));
+  
+            
+            listaProdutosVendidos.add(produtos);
+        }
+        
+        return listaProdutosVendidos;
+        } catch (Exception e) {
+            System.out.println("Erro ao buscar produtos: " + e.getMessage());
+            return null;
+            
+        }
+    
+    }
+    
     public List<ProdutosDTO> listarProdutos(){
         String sql = "SELECT * FROM produtos";
         
@@ -70,6 +101,7 @@ public class ProdutosDAO {
             produtos.setNome(rs.getString("nome"));
             produtos.setValor(rs.getInt("valor"));
             produtos.setStatus(rs.getString("status"));
+  
             
             listaProdutos.add(produtos);
         }

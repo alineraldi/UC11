@@ -1,4 +1,9 @@
+package gui;
 
+
+import beans.ProdutosDAO;
+import beans.ProdutosDTO;
+import gui.ListagemView;
 import javax.swing.JOptionPane;
 
 /*
@@ -165,7 +170,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
-        listagemVIEW listagem = new listagemVIEW(); 
+        ListagemView listagem = new ListagemView(); 
         listagem.setVisible(true);
     }//GEN-LAST:event_btnProdutosActionPerformed
 
