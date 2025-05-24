@@ -29,7 +29,7 @@ public class VendasView extends javax.swing.JFrame {
         
     }
     
-    private void listarProdutosVendidos(){
+        private void listarProdutosVendidos(){ // filtro para listar itens vendidos
         try {
             ProdutosDAO produtosdao = new ProdutosDAO();
             
@@ -49,8 +49,6 @@ public class VendasView extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
